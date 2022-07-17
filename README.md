@@ -10,5 +10,5 @@ Web App Link: https://gabriellajg-insightsengine-app-kkzt8l.streamlitapp.com/
 
 </p>
 <p align="center">
-  <img src="https://github.com/gabriellajg/InsightsEngine/main/Interface.png" >
+  <img src="https://github.com/gabriellajg/InsightsEngine/blob/main/Images/Interface.png" >
 </p>

@@ -16,7 +16,7 @@ st.set_page_config(page_title="Extracting Sentiment and Insights from Product Re
                    layout="wide")
 
 t1, t2 = st.columns((0.07,1))
-t1.image('LEGO_logo.svg.png', width = 100)
+t1.image('./Images/LEGO_logo.svg.png', width = 100)
 t2.title("Extracting Sentiment and Insights from Product Reviews")
 
 
@@ -48,7 +48,7 @@ def get_df_by_product(selected_products, selected_emotions=['POS','NEU','NEG']):
 def plot_pos_wordcloud(pos_keywords, out = 'target'):
     if out == 'target':
         cm = ' '.join(list(map(str, pos_keywords)))
-        mask = np.array(Image.open('upvote.png'))
+        mask = np.array(Image.open('./Images/upvote.png'))
         wcP = WordCloud(stopwords=stop_words, width=3000, height=2000, random_state=1, collocations=False,
                         background_color="white", colormap='rainbow', mask=mask).generate(cm)
         return wcP
@@ -65,7 +65,7 @@ def plot_pos_wordcloud(pos_keywords, out = 'target'):
 def plot_neg_wordcloud(neg_keywords, out = 'target'):
     if out == 'target':
         cm = ' '.join(list(map(str, neg_keywords)))
-        mask = np.array(Image.open('downvote.png'))
+        mask = np.array(Image.open('./Images/downvote.png'))
         wcN = WordCloud(stopwords=stop_words, width=2000, height=1500, random_state=1, collocations=False,
                         background_color="white", colormap='rainbow', mask=mask).generate(cm)
         return wcN
@@ -96,8 +96,8 @@ def plot_neu_wordcloud(neu_keywords, out = 'target'):
 
 # ---- IMPORT DATA ---
 
-df = pd.read_csv("df_running.csv")
-allTriple = pd.read_csv("allTriple0_5200.csv")
+df = pd.read_csv("./DataFrames/df_running.csv")
+allTriple = pd.read_csv("./DataFrames/allTriple0_5200.csv")
 
 
 
@@ -192,7 +192,7 @@ st.markdown('''---''')
 st.markdown('### 3. Keywords Extraction (A Quick Demo)')
 
 t1,t2,t3 = st.columns((0.07,1,0.07))
-t2.image('Presentation1.png', use_column_width = True,clamp = True)
+t2.image('./Images/Presentation1.png', use_column_width = True,clamp = True)
 
 
 st.markdown('''---''')
