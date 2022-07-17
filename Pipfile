@@ -4,6 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+streamlit = "*"
+streamlit-chat = "*"
+matplotlib = "*"
+pandas = "*"
+numpy = "*"
+plotly-express = "*"
+wordcloud = "*"
+gensim = "*"
+pillow = "*"
 
 [dev-packages]
 

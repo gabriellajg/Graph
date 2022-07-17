@@ -5,22 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73cfb65e-ad36-4152-8b74-b1f5ab4183db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dashboard_streamlit.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/df_running-checkpoint.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LEGO_logo.svg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allTriple0_5200.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/df_running.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lego_Dashboard.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Lego_Dashboard.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Webscrawler.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dashboard_streamlit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Lego_Dashboard-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/df_running-checkpoint.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/untitled-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LEGO_logo.svg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lego_Dashboard.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allTriple0_5200.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/df_running.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/downvote.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/upvote.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
