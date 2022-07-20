@@ -36,9 +36,9 @@ def get_allItems(df, allTriple):
 	return df[df.set_name.isin(allTriple.item.unique())].set_name.unique()
 
 @st.cache
-def get_triples_by_product(selected_products):
-	#return allTriple[allTriple.item.isin(selected_products) & allTriple.BERT_SentLabel.isin(selected_emotions)]
-	return allTriple[allTriple.item.isin(selected_products)].reset_index(drop=True)
+def get_triples_by_product(selected_products, selected_emotions=['POS','NEU','NEG']):
+	return allTriple[allTriple.item.isin(selected_products) & allTriple.sentiment.isin(selected_emotions)].reset_index(drop=True)
+	#return allTriple[allTriple.item.isin(selected_products)].reset_index(drop=True)
 
 @st.cache
 def get_df_by_product(selected_products, selected_emotions=['POS','NEU','NEG']):
@@ -116,6 +116,7 @@ triple_selected = get_triples_by_product(selected_products)
 # ---- MAINPAGE ---
 
 Rating = round(df_selected.overallRating.mean(), 2)
+Price = round(df_selected.Price.mean(), 2)
 valueForMoney = round(df_selected.valueForMoney.mean(), 2)
 overallPlayExperience = round(df_selected.overallPlayExperience.mean(), 2)
 SentScore = round(df_selected.sentiment.mean(), 2)
@@ -123,14 +124,18 @@ NumTriples = triple_selected.reviewID.count()
 NumReviews = df_selected.comment.shape[0]
 #st.write(Rating, valueForMoney, overallPlayExperience, NumReviews, n, SentScore)
 
-col1, col2 , col3 , col4 , col5 = st.columns(5)
+col1, col15, col2 , col3 , col4 , col5 = st.columns(6)
 
 with col1:
     st.markdown("##### Product Name")
     st.markdown(f"##### 🧱{selected_products[0]}")
 
+with col15:
+    st.markdown("##### Listing Price")
+    st.markdown(f"##### 🏷️${Price}")
+
 with col2:
-    st.markdown('##### Numerical Ratings')
+    st.markdown("##### Customers' Rating")
     st.markdown(f"##### :star:{Rating}")
 
 with col3:
@@ -157,6 +162,7 @@ selected_emotions = st.multiselect(
 )
 
 df_emo_selected = get_df_by_product(selected_products, selected_emotions)
+triple_selected2 = get_triples_by_product(selected_products, selected_emotions)
 
 st.markdown('#### Product Reviews')
 
@@ -205,18 +211,31 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('#### Extracted Keywords')
-    st.dataframe(triple_selected.loc[:,['item','target','opinion','sentiment']].style.applymap(
+    st.dataframe(triple_selected2.loc[:,['item','target','opinion','sentiment']].style.applymap(
         color_sentiment,
         subset=["sentiment"]
     ))
 
 with col2:
     st.markdown('#### Distribution of Sentiment of Keywords')
-    long_df = pd.DataFrame(triple_selected.sentiment.value_counts()).reindex(['POS', 'NEU', 'NEG']).reset_index()
+    long_df = pd.DataFrame(triple_selected2.sentiment.value_counts()).reindex(['POS', 'NEU', 'NEG']).reset_index()
     long_df = long_df.rename(columns={'index': 'Sentiment', 'sentiment': 'Counts'})
     fig = px.bar(long_df, x="Sentiment", y="Counts", color="Sentiment")
     fig.update_layout(barmode='relative')
     fig
+
+with col2:
+    #st.markdown('#### Distribution of Sentiment of Keywords')
+    long_df = pd.DataFrame(triple_selected2.sentiment.value_counts()).reindex(['POS', 'NEU', 'NEG']).reset_index()
+    long_df = long_df.rename(columns={'index': 'Sentiment', 'sentiment': 'Counts'})
+    fig = px.bar(long_df, x="Sentiment", y="Counts", color="Sentiment",
+                 color_discrete_map={
+                     "POS": "#17becf",
+                     "NEU": "#2ca02c",
+                     "NEG": "#d62728"}
+                 )
+    fig.update_layout(barmode='relative')
+    #fig
 
 # ---- Word Cloud ---
 
@@ -230,52 +249,57 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("<h4 style='text-align: center'>Positive Reviews Mentioned:</h4>", unsafe_allow_html=True)
-    fig, ax = plt.subplots()
-    ax.imshow(plot_pos_wordcloud(pos_keywords), aspect='auto')
-    ax.axis('off')
-    st.pyplot(fig)
+    if pos_keywords:
+        fig, ax = plt.subplots()
+        ax.imshow(plot_pos_wordcloud(pos_keywords), aspect='auto')
+        ax.axis('off')
+        st.pyplot(fig)
 
 with col2:
     st.markdown("<h4 style='text-align: center'>Negative Reviews Mentioned:</h4>", unsafe_allow_html=True)
-    #st.markdown('#### Negative Reviews Mentioned:')
-    fig, ax = plt.subplots()
-    ax.imshow(plot_neg_wordcloud(neg_keywords))
-    ax.axis('off')
-    st.pyplot(fig)
+    if neg_keywords:
+        fig, ax = plt.subplots()
+        ax.imshow(plot_neg_wordcloud(neg_keywords))
+        ax.axis('off')
+        st.pyplot(fig)
 
 with col3:
     st.markdown("<h4 style='text-align: center'>Neutral Reviews Mentioned:</h4>", unsafe_allow_html=True)
-    #st.markdown('#### Neutral Reviews Mentioned:')
-    fig, ax = plt.subplots()
-    ax.imshow(plot_neu_wordcloud(neu_keywords))
-    ax.axis('off')
-    st.pyplot(fig)
+    if neu_keywords:
+        fig, ax = plt.subplots()
+        ax.imshow(plot_neu_wordcloud(neu_keywords))
+        ax.axis('off')
+        st.pyplot(fig)
 
 col1, col2 , col3 = st.columns(3)
 
 with col1:
-    st.markdown("<h4 style='text-align: center'>Opinions of Top Highlight:</h4>", unsafe_allow_html=True)
-    wc, top_word = plot_pos_wordcloud(pos_keywords, out = 'opinion')
-    st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation='nearest')
-    ax.axis('off')
-    st.pyplot(fig)
+    st.markdown("<h4 style='text-align: center'>Opinions of the Top Highlight:</h4>", unsafe_allow_html=True)
+    if pos_keywords:
+        wc, top_word = plot_pos_wordcloud(pos_keywords, out = 'opinion')
+        st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
+        fig, ax = plt.subplots()
+        ax.imshow(wc, interpolation='nearest')
+        ax.axis('off')
+        st.pyplot(fig)
 
 with col2:
-    st.markdown("<h4 style='text-align: center'>Opinions of Top Concern:</h4>", unsafe_allow_html=True)
-    wc, top_word = plot_neg_wordcloud(neg_keywords, out = 'opinion')
-    st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation='nearest')
-    ax.axis('off')
-    st.pyplot(fig)
+    st.markdown("<h4 style='text-align: center'>Opinions of the Top Concern:</h4>", unsafe_allow_html=True)
+    if neg_keywords:
+        wc, top_word = plot_neg_wordcloud(neg_keywords, out='opinion')
+        st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
+        fig, ax = plt.subplots()
+        ax.imshow(wc, interpolation='nearest')
+        ax.axis('off')
+        st.pyplot(fig)
 
 with col3:
-    st.markdown("<h4 style='text-align: center'>Opinions of Average Feature</h4>", unsafe_allow_html=True)
-    wc, top_word = plot_neu_wordcloud(neu_keywords, out = 'opinion')
-    st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation='nearest')
-    ax.axis('off')
-    st.pyplot(fig)
+    st.markdown("<h4 style='text-align: center'>Opinions of an Average Feature</h4>", unsafe_allow_html=True)
+    if neu_keywords:
+        wc, top_word = plot_neu_wordcloud(neu_keywords, out='opinion')
+        st.markdown(f"<h5 style='text-align: center'>{top_word}</h5>", unsafe_allow_html=True)
+        fig, ax = plt.subplots()
+        ax.imshow(wc, interpolation='nearest')
+        ax.axis('off')
+        st.pyplot(fig)
+
