@@ -16,7 +16,7 @@ Check Out the Web Apps Here:
 
 * [Full Version] https://gabriellajg-insightsengine-brandsentiment1-pc8w53.streamlitapp.com/
 
-* [Product Only] https://gabriellajg-insightsengine-app-productbranch-5fudu1.streamlitapp.com/
+* [Product Only] https://gabriellajg-insightsengine-productanalysis-productbranch-ici622.streamlitapp.com/
 
 </p>
 <p align="center">
