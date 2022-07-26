@@ -12,7 +12,7 @@ This dashboard provides analyses of product reviews in terms of:
 * What suggestions can be made to improve the user experience of your products? 
 
 
-Check Out the Web App Here: https://gabriellajg-insightsengine-app-kkzt8l.streamlitapp.com/ 
+Check Out the Web App Here: https://gabriellajg-insightsengine-productanalysis-productbranch-ici622.streamlitapp.com/ 
 
 </p>
 <p align="center">

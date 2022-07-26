@@ -18,6 +18,7 @@ st.set_page_config(page_title="Extracting Sentiment and Insights from Product Re
 t1, t2 = st.columns((0.07,1))
 t1.image('./Images/LEGO_logo.svg.png', width = 100)
 t2.title("Extracting Sentiment and Insights from Product Reviews")
+t2.markdown("Github: https://github.com/gabriellajg/InsightsEngine")
 
 
 # ---- FUNCTIONS ---
